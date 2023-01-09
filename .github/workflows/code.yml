@@ -13,6 +13,10 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ./portfolio
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -21,16 +25,14 @@ jobs:
         with:
           node-version: 16.x
       - name: Install dependencies
-        working-directory: ./portfolio
         run: npm install
       - name: Build project
-        working-directory: ./portfolio
         run: npm run build
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: production-files
-          path: ./portfolio/build
+          path: ./build
 
   deploy:
     name: deploy
@@ -42,7 +44,7 @@ jobs:
         uses: actions/download-artifact@v2
         with: 
           name: production-files
-          path: ./portfolio/build
+          path: ./build
 
       - name: Deploy to github pages
         uses: peaceiris/actions-gh-pages@v3

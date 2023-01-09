@@ -45,7 +45,6 @@ jobs:
           path: ./build
 
       - name: Deploy to github pages
-        working-directory: ./portfolio
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{secrets.GH_TOKEN}}

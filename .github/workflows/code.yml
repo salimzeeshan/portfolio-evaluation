@@ -15,10 +15,8 @@ jobs:
 
     steps:
       - name: Checkout code
-        working-directory: ./portfolio
         uses: actions/checkout@v3
       - name: Install Node
-        working-directory: ./portfolio
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
@@ -29,7 +27,6 @@ jobs:
         working-directory: ./portfolio
         run: npm run build
       - name: Upload artifact
-        working-directory: ./portfolio
         uses: actions/upload-artifact@v2
         with:
           name: production-files
@@ -42,7 +39,6 @@ jobs:
 
     steps:
       - name: Download artifact
-        working-directory: ./portfolio
         uses: actions/download-artifact@v2
         with: 
           name: production-files
